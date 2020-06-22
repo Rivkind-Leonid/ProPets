@@ -1,4 +1,4 @@
-package telran.ProPets.accounting;
+package telran.ProPets.accounting.beans;
 
 import java.time.LocalDate;
 import java.util.List;
