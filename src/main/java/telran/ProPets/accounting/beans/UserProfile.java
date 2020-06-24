@@ -13,6 +13,6 @@ public class UserProfile {
     String phone;
     String userPhoto;
     Set<String> roles;
-    List<Long> activities;
-    List<Long> favorites;
+//    List<String> activities;
+//    List<String> favorites;
 }
