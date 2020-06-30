@@ -1,11 +1,10 @@
 package telran.ProPets.accounting.Service;
 
-import telran.ProPets.accounting.Dto.AccountDto;
-import telran.ProPets.accounting.Dto.UsersReturnCode;
-import telran.ProPets.accounting.beans.UserProfile;
+import telran.ProPets.accounting.dto.AccountDto;
+import telran.ProPets.accounting.dto.UsersReturnCode;
+import telran.ProPets.accounting.dao.UserProfile;
 
 import java.io.Serializable;
-import java.util.List;
 
 public interface IProPets extends Serializable {
 
