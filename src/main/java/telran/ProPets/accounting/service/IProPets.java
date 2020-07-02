@@ -1,15 +1,17 @@
-package telran.ProPets.accounting.Service;
+package telran.ProPets.accounting.service;
 
 import telran.ProPets.accounting.dto.AccountDto;
+import telran.ProPets.accounting.dto.LoginDto;
 import telran.ProPets.accounting.dto.UsersReturnCode;
 import telran.ProPets.accounting.dao.UserProfile;
 
+import javax.security.auth.login.AccountException;
 import java.io.Serializable;
 
 public interface IProPets extends Serializable {
 
     UsersReturnCode addUser(AccountDto accountDto);
-    String logIn(String password,String email);
+    String logIn(LoginDto loginDto) throws AccountException;
     UserProfile getUser(String email);
     UserProfile updateUser(UserProfile profile);
     UsersReturnCode deleteUser(String email);

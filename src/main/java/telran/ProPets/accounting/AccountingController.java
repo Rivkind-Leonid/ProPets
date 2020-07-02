@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import telran.ProPets.accounting.dto.AccountDto;
 import telran.ProPets.accounting.dto.UsersReturnCode;
-import telran.ProPets.accounting.Service.IProPets;
+import telran.ProPets.accounting.service.IProPets;
 import telran.ProPets.accounting.api.ApiConstants;
 import telran.ProPets.accounting.repo.AccountRepository;
 
