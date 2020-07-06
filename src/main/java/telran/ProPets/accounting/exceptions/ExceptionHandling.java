@@ -1,4 +1,4 @@
-package telran.ProPets.accounting.exceptionHandling;
+package telran.ProPets.accounting.exceptions;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class ExceptionHandling {
 
-    @ExceptionHandler(AccountException.class)
+    @ExceptionHandler(ProPetsAccountException.class)
     @ResponseBody
-    public ExceptionResponse accountExceptionHandler (HttpServletResponse response, AccountException e){
+    public ExceptionResponse accountExceptionHandler (HttpServletResponse response, ProPetsAccountException e){
         ExceptionResponse exceptionResponse = new ExceptionResponse(e.getStatus(), e.getMessage());
         response.setStatus(e.getStatus().value());
         return exceptionResponse;

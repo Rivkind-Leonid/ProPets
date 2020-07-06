@@ -17,7 +17,13 @@ public class AuthenticationImpl implements IAuthentication{
     }
 
     @Override
-    public String createToken(String password, String email, LocalDateTime creationTime) {
+    public String generateToken(String password, String email, LocalDateTime creationTime) {
+
         return null;
+    }
+
+    @Override
+    public Boolean validateEmail(String email) {
+        return false;
     }
 }

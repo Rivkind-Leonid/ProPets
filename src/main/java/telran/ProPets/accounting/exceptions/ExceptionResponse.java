@@ -1,4 +1,4 @@
-package telran.ProPets.accounting.exceptionHandling;
+package telran.ProPets.accounting.exceptions;
 
 import org.springframework.http.HttpStatus;
 
