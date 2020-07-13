@@ -14,7 +14,7 @@ import telran.propets.exceptions.UsersReturnCode;
 import java.util.Date;
 
 @Service
-public class AuthenticationImpl implements IAuthentication{
+public class AuthenticationImpl implements IAuthentication {
     private String secret = "ProPets";
     @Override
     public Boolean validateToken(String token) {
