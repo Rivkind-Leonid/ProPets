@@ -1,5 +1,6 @@
 package telran.propets.accounting;
 
+import Service.IAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -7,11 +8,10 @@ import telran.propets.accounting.api.ApiConstants;
 import telran.propets.accounting.dao.UserProfile;
 import telran.propets.accounting.dto.AccountDto;
 import telran.propets.accounting.dto.LoginDto;
+import telran.propets.exceptions.ProPetsAccountException;
 import telran.propets.exceptions.UsersReturnCode;
-import telran.ProPets.exceptions.ProPetsAccountException;
 import telran.propets.accounting.service.IProPets;
 import telran.propets.accounting.repo.AccountRepository;
-import telran.ProPets.authentication.Service.IAuthentication;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,18 +36,20 @@ public class AccountingController {
     @GetMapping(value = ApiConstants.USER + "{email}")
     public UserProfile getUser(@PathVariable("email") String email, HttpServletRequest request){
         String token = request.getHeader("authorization");
-        if(!authentication.validateToken(token)){
-            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
-        }
-        return proPets.getUser(email);
+        return proPets.getUser(email, token);
     }
 
-    @GetMapping(value = ApiConstants.USER + "{email}")
+    @PutMapping(value = ApiConstants.USER)
+    public UserProfile updateUser(@RequestBody UserProfile userProfile, HttpServletRequest request){
+        String token = request.getHeader("authorization");
+
+    }
+
+
+    @DeleteMapping(value = ApiConstants.USER + "{email}")
     public UsersReturnCode deleteUser(@PathVariable("email") String email, HttpServletRequest request){
         String token = request.getHeader("authorization");
-        if(!authentication.validateToken(token)){
-            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
-        }
-        return proPets.deleteUser(email);
+
+        return proPets.deleteUser(email, token);
     }
 }

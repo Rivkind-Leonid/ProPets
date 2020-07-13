@@ -24,10 +24,10 @@ public class ProPetsImpl implements IProPets {
     IAuthentication authentication;
 
     @Override
-    public UsersReturnCode addUser(AccountDto accountDto) {
+    public UsersReturnCode addUser(AccountDto accountDto) throws ProPetsAccountException {
         String email = accountDto.getUserEmail();
         if(repository.existsById(email)){
-            return UsersReturnCode.EMAIL_ALREADY_EXISTS;
+            throw new ProPetsAccountException(HttpStatus.BAD_REQUEST, UsersReturnCode.EMAIL_ALREADY_EXISTS.name());
         }
         String password = accountDto.getPassword();
         String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -52,8 +52,13 @@ public class ProPetsImpl implements IProPets {
     }
 
     @Override
-    public UserProfile getUser(String email) {
-
+    public UserProfile getUser(String email, String token) {
+        if(!repository.existsById(email)) {
+            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.EMAIL_NOT_EXISTS.name());
+        }
+        if(!authentication.validateToken(token)){
+            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
+        }
         if(!authentication.validateEmail(email)){
             throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.INVALID_EMAIL.name());
         }
@@ -61,13 +66,24 @@ public class ProPetsImpl implements IProPets {
     }
 
     @Override
-    public UserProfile updateUser(UserProfile user) {
-
-        return null;
+    public UserProfile updateUser(UserProfile user, String token) {
+        if(!repository.existsById(user.getUserEmail())) {
+            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.EMAIL_NOT_EXISTS.name());
+        }
+         if(!authentication.validateToken(token)){
+             throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
+        }
+        return repository.save(user);
     }
 
     @Override
-    public UsersReturnCode deleteUser(String email) {
+    public UsersReturnCode deleteUser(String email, String token) {
+        if(!repository.existsById(email)) {
+            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.EMAIL_NOT_EXISTS.name());
+        }
+        if(!authentication.validateToken(token)){
+            throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
+        }
         if(!authentication.validateEmail(email)){
             throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.INVALID_EMAIL.name());
         }
