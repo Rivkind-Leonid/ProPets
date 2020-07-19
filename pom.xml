@@ -12,7 +12,7 @@
         <module>common</module>
         <module>accounting</module>
         <module>authentication</module>
-        <module>configuration</module>
+        <module>telran.propets.authentication.configuration</module>
     </modules>
 
     <parent>
@@ -27,10 +27,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
+                <telran.propets.authentication.configuration>
                     <source>8</source>
                     <target>8</target>
-                </configuration>
+                </telran.propets.authentication.configuration>
             </plugin>
         </plugins>
     </build>

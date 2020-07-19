@@ -1,14 +1,13 @@
 package telran.propets.accounting;
 
-import Service.IAuthentication;
+import telran.propets.authentication.Service.IAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import telran.propets.accounting.api.ApiConstants;
 import telran.propets.accounting.dao.UserProfile;
 import telran.propets.accounting.dto.AccountDto;
 import telran.propets.accounting.dto.LoginDto;
-import telran.propets.exceptions.ProPetsAccountException;
+import telran.propets.accounting.dto.UserProfileDto;
 import telran.propets.exceptions.UsersReturnCode;
 import telran.propets.accounting.service.IProPets;
 import telran.propets.accounting.repo.AccountRepository;
@@ -28,7 +27,7 @@ public class AccountingController {
         return proPets.addUser(accountDto);
     }
 
-    @GetMapping(value = ApiConstants.LOG_IN)
+    @PostMapping(value = ApiConstants.LOG_IN)
     public String login(@RequestBody LoginDto loginDto){
         return proPets.logIn(loginDto);
     }
@@ -40,9 +39,9 @@ public class AccountingController {
     }
 
     @PutMapping(value = ApiConstants.USER)
-    public UserProfile updateUser(@RequestBody UserProfile userProfile, HttpServletRequest request){
+    public UserProfile updateUser(@RequestBody UserProfileDto userProfileDto, HttpServletRequest request){
         String token = request.getHeader("authorization");
-
+        return proPets.updateUser(userProfileDto, token);
     }
 
 

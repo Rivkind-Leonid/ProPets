@@ -12,22 +12,19 @@ public class UserProfileDto {
     @JsonProperty
     String password;
     @JsonProperty
-    LocalDate activationDate;
-    @JsonProperty
-    Boolean revoked;
-    @JsonProperty
     String phone;
     @JsonProperty
     String userPhoto;
+    @JsonProperty
+    LocalDate activationDate;
 
-    public UserProfileDto(String userEmail, String name, String password, LocalDate activationDate, Boolean revoked, String phone, String userPhoto) {
+    public UserProfileDto(String userEmail, String name, String password, String phone, String userPhoto, LocalDate activationDate) {
         this.userEmail = userEmail;
         this.name = name;
         this.password = password;
-        this.activationDate = activationDate;
-        this.revoked = revoked;
         this.phone = phone;
         this.userPhoto = userPhoto;
+        this.activationDate = activationDate;
     }
 
     public String getUserEmail() {
@@ -38,17 +35,15 @@ public class UserProfileDto {
         return name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public LocalDate getActivationDate() {
         return activationDate;
     }
 
-    public Boolean getRevoked() {
-        return revoked;
+    public String getPassword() {
+        return password;
     }
+
+
 
     public String getPhone() {
         return phone;
@@ -57,4 +52,6 @@ public class UserProfileDto {
     public String getUserPhoto() {
         return userPhoto;
     }
+
+
 }

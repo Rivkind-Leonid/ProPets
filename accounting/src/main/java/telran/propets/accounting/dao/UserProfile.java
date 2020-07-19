@@ -3,9 +3,6 @@ package telran.propets.accounting.dao;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 public class UserProfile {
 
@@ -14,10 +11,9 @@ public class UserProfile {
     String name;
     String hashPassword;
     LocalDate activationDate;
-    Boolean revoked;
     String phone;
     String userPhoto;
-    Set<Enum> roles;
+
 //    List<String> activities;
 //    List<String> favorites;
 
@@ -27,8 +23,6 @@ public class UserProfile {
         this.name = name;
         this.hashPassword = hashPassword;
         this.activationDate = activationDate;
-        this.roles = new HashSet<>();
-        roles.add(Roles.USER);
     }
 
     public String getUserEmail() {
@@ -44,12 +38,8 @@ public class UserProfile {
     }
 
     public LocalDate getActivationDate() {
-        return activationDate;
-    }
+        return activationDate;}
 
-    public Boolean getRevoked() {
-        return revoked;
-    }
 
     public String getPhone() {
         return phone;
@@ -57,10 +47,6 @@ public class UserProfile {
 
     public String getUserPhoto() {
         return userPhoto;
-    }
-
-    public Set<Enum> getRoles() {
-        return roles;
     }
 
     public void setName(String name) {
@@ -75,9 +61,6 @@ public class UserProfile {
         this.activationDate = activationDate;
     }
 
-    public void setRevoked(Boolean revoked) {
-        this.revoked = revoked;
-    }
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -87,10 +70,6 @@ public class UserProfile {
         this.userPhoto = userPhoto;
     }
 
-    public void addRole(Enum role) {
-        this.roles.add(role);
-    }
-
     @Override
     public String toString() {
         return "UserProfile{" +
@@ -98,31 +77,9 @@ public class UserProfile {
                 ", name='" + name + '\'' +
                 ", hashPassword='" + hashPassword + '\'' +
                 ", activationDate=" + activationDate +
-                ", revoked=" + revoked +
                 ", phone='" + phone + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
-                ", roles=" + roles +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserProfile that = (UserProfile) o;
-        return Objects.equals(userEmail, that.userEmail) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(hashPassword, that.hashPassword) &&
-                Objects.equals(activationDate, that.activationDate) &&
-                Objects.equals(revoked, that.revoked) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(userPhoto, that.userPhoto) &&
-                Objects.equals(roles, that.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userEmail, name, hashPassword, activationDate, revoked, phone, userPhoto, roles);
     }
 }
 

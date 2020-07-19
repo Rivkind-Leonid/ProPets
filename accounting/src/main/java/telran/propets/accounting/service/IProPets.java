@@ -2,6 +2,7 @@ package telran.propets.accounting.service;
 
 import telran.propets.accounting.dto.AccountDto;
 import telran.propets.accounting.dto.LoginDto;
+import telran.propets.accounting.dto.UserProfileDto;
 import telran.propets.exceptions.ProPetsAccountException;
 import telran.propets.exceptions.UsersReturnCode;
 import telran.propets.accounting.dao.UserProfile;
@@ -13,7 +14,7 @@ public interface IProPets extends Serializable {
     UsersReturnCode addUser(AccountDto accountDto) throws ProPetsAccountException;
     String logIn(LoginDto loginDto) throws ProPetsAccountException;
     UserProfile getUser(String email, String token) throws ProPetsAccountException;
-    UserProfile updateUser(UserProfile profile, String token) throws ProPetsAccountException;
+    UserProfile updateUser(UserProfileDto profile, String token) throws ProPetsAccountException;
     UsersReturnCode deleteUser(String email, String token) throws ProPetsAccountException;
 
 

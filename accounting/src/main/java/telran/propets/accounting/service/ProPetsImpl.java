@@ -1,8 +1,9 @@
 package telran.propets.accounting.service;
 
-import Service.IAuthentication;
+import telran.propets.authentication.Service.IAuthentication;
 import org.springframework.stereotype.Service;
 import telran.propets.accounting.dto.LoginDto;
+import telran.propets.accounting.dto.UserProfileDto;
 import telran.propets.exceptions.UsersReturnCode;
 import telran.propets.accounting.repo.AccountRepository;
 import org.mindrot.jbcrypt.BCrypt;
@@ -66,14 +67,16 @@ public class ProPetsImpl implements IProPets {
     }
 
     @Override
-    public UserProfile updateUser(UserProfile user, String token) {
+    public UserProfile updateUser(UserProfileDto user, String token) {
         if(!repository.existsById(user.getUserEmail())) {
             throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.EMAIL_NOT_EXISTS.name());
         }
          if(!authentication.validateToken(token)){
              throw new ProPetsAccountException(HttpStatus.UNAUTHORIZED, UsersReturnCode.NEED_TO_SIGN_IN.name());
         }
-        return repository.save(user);
+        String hashPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        UserProfile updatedUser = new UserProfile(user.getUserEmail(), user.getName(), hashPassword, user.getActivationDate());
+        return repository.save(updatedUser);
     }
 
     @Override
