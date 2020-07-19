@@ -1,6 +1,6 @@
 package telran.propets.authentication;
 
-import api.ApiConstants;
+import telran.propets.authentication.api.ApiConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import telran.propets.authentication.AuthResponse.AuthResponse;
@@ -32,7 +32,7 @@ public class AuthenticationController {
     }
 
     @GetMapping(value = ApiConstants.VALIDATE_EMAIL + "{email}")
-    public Boolean validateEmail (@PathVariable("email") String email, HttpServletRequest request){\
+    public Boolean validateEmail (@PathVariable("email") String email, HttpServletRequest request){
         String token = request.getHeader("authorization");
         return authentication.validateEmail(email, token);
     }

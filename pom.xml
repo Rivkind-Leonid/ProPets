@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>common</module>
-        <module>accounting</module>
+<!--        <module>common</module>-->
+<!--        <module>accounting</module>-->
         <module>authentication</module>
         <module>telran.propets.authentication.configuration</module>
     </modules>

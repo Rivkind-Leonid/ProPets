@@ -1,4 +1,4 @@
-package api;
+package telran.propets.authentication.api;
 
 public interface ApiConstants {
     String VALIDATE_TOKEN = "/authentication/v1/validate/token";

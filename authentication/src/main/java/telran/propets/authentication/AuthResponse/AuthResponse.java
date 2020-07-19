@@ -1,5 +1,7 @@
 package telran.propets.authentication.AuthResponse;
 
+import org.springframework.http.HttpStatus;
+
 public class AuthResponse {
     boolean status;
     String message;
