@@ -1,9 +1,12 @@
 package telran.propets.accounting.dao;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
+
+@Document(collection = "users")
 public class UserProfile {
 
     @Id
@@ -14,8 +17,6 @@ public class UserProfile {
     String phone;
     String userPhoto;
 
-//    List<String> activities;
-//    List<String> favorites;
 
 
     public UserProfile(String userEmail, String name, String hashPassword, LocalDate activationDate) {
